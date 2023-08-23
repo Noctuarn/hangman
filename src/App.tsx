@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 import Hangman from "./components/Hangman";
 import MainWord from "./components/MainWord";
+import Keyboard from "./components/Keyboard";
 
 import words from "./data/words.json"
 
@@ -13,6 +14,7 @@ const App: React.FC = () => {
     <div className="app">
       <Hangman />
       <MainWord wordToGuess={wordToGuess}/>
+      <Keyboard/>
     </div>
   );
 };

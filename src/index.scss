@@ -12,7 +12,7 @@
 .app {
   display: flex;
   flex-direction: column;
-  padding: 50px 15px;
+  padding: 10px 15px;
   align-items: center;
   gap: 80px;
 }
@@ -134,5 +134,30 @@
     font-weight: 700;
     padding-bottom: 10px;
     border-bottom: 5px solid black;
+  }
+}
+
+.keyboard{
+  display: grid;
+  width: 60%;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  grid-template-rows: auto;
+  gap: 10px;
+
+  &-btn{
+    cursor: pointer;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: black;
+    border: 2px solid black;
+    background: none;
+    transition: all .2s;
+
+    @media (min-width: 768px){
+      &:hover{
+        background-color: #0770cc;
+        color: white;
+      }
+    }
   }
 }

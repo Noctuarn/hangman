@@ -8,9 +8,9 @@ type MainWordProps = {
 const MainWord : React.FC<MainWordProps> = ({wordToGuess}) => {
   return (
     <div className='main-word'>
-      {wordToGuess.split("").map((letter) => {
+      {wordToGuess.split("").map((letter, index) => {
         return (
-            <div className='main-word-letter'>
+            <div key={index + "letter"} className='main-word-letter'>
                 {letter}
             </div>
         )
