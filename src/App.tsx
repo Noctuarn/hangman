@@ -1,11 +1,11 @@
+import Hangman from "./components/Hangman";
 
-const App: React.FC = () =>  {
-
+const App: React.FC = () => {
   return (
-    <div className='app'>
-      
+    <div className="app">
+      <Hangman />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
