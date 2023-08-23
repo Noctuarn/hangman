@@ -1,8 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:regular,500,700);
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  font-family: "Poppins";
+  font-weight: 400;
 }
 
 .app {
@@ -10,6 +14,7 @@
   flex-direction: column;
   padding: 50px 15px;
   align-items: center;
+  gap: 80px;
 }
 
 .hangman {
@@ -115,5 +120,19 @@
     right: -230px;
     transform: rotate(45deg);
     transform-origin: left bottom;
+  }
+}
+
+
+.main-word{
+  display: flex;
+  gap: 25px;
+  align-items: center;
+
+  &-letter{
+    font-size: 3rem;
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 5px solid black;
   }
 }
