@@ -4,11 +4,13 @@ import { Keys } from "../data/keys";
 
 type KeyboardProps = {
   addGuessedLetter: (letter: string) => void;
+  correctLetters: string[];
   incorrectLetters: string[];
 };
 
 const Keyboard: React.FC<KeyboardProps> = ({
   addGuessedLetter,
+  correctLetters,
   incorrectLetters,
 }) => {
   return (
@@ -23,7 +25,11 @@ const Keyboard: React.FC<KeyboardProps> = ({
             className={`keyboard-btn ${
               incorrectLetters.includes(key.toUpperCase())
                 ? "keyboard-btn-incorrect"
-                : "keyboard-btn-correct"
+                : ""
+            } ${
+              correctLetters.includes(key.toUpperCase())
+                ? "keyboard-btn-correct"
+                : ""
             }`}
           >
             {key}
