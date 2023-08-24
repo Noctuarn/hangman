@@ -1,16 +1,17 @@
 import React from 'react'
 
 type MainWordProps = {
-    wordToGuess: string
+    wordToGuess: string,
+    guessedLetters: string[]
 }
 
 
-const MainWord : React.FC<MainWordProps> = ({wordToGuess}) => {
+const MainWord : React.FC<MainWordProps> = ({wordToGuess, guessedLetters}) => {
   return (
     <div className='main-word'>
       {wordToGuess.split("").map((letter, index) => {
         return (
-            <div key={index + "letter"} className='main-word-letter'>
+            <div key={index + "letter"} className={`main-word-letter ${!guessedLetters.includes(letter) && "hidden"}`}>
                 {letter}
             </div>
         )
