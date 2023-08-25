@@ -12,7 +12,7 @@ const App: React.FC = () => {
     words[Math.floor(Math.random() * words.length)].toUpperCase()
   );
 
-  const uniqueLetter: string[] = Array.from(
+  const letterToGuess: string[] = Array.from(
     new Set([...wordToGuess.substring(1, wordToGuess.length - 1).split("")])
   );
 
@@ -29,12 +29,11 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-  
     if (incorrectLetters.length > 5) {
       setIsGameOver((prev) => !prev);
     }
 
-    if (correctLetters.length == uniqueLetter.length) {
+    if (correctLetters.length == letterToGuess.length) {
       setIsGameOver((prev) => !prev);
       setIsWin(true);
     }
