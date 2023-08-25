@@ -11,6 +11,11 @@ const App: React.FC = () => {
   const [wordToGuess, setWordToGuess] = useState<string>(
     words[Math.floor(Math.random() * words.length)].toUpperCase()
   );
+
+  const uniqueLetter: string[] = Array.from(
+    new Set([...wordToGuess.substring(1, wordToGuess.length - 1).split("")])
+  );
+
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isWin, setIsWin] = useState<boolean>(false);
@@ -24,16 +29,13 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-
-    console.log(correctLetters);
-    
-
+  
     if (incorrectLetters.length > 5) {
-      setIsGameOver(true);
+      setIsGameOver((prev) => !prev);
     }
 
-    if(correctLetters.length == wordToGuess.length - 2){
-      setIsGameOver(true);
+    if (correctLetters.length == uniqueLetter.length) {
+      setIsGameOver((prev) => !prev);
       setIsWin(true);
     }
   }, [guessedLetters]);
@@ -52,12 +54,17 @@ const App: React.FC = () => {
       <Hangman numberOfGuesses={incorrectLetters.length} />
       <MainWord guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
       <Keyboard
-        correctLetters ={correctLetters}
+        correctLetters={correctLetters}
         incorrectLetters={incorrectLetters}
         addGuessedLetter={addGuessedLetter}
       />
       {isGameOver && (
-        <Modal wordToGuess={wordToGuess} setIsGameOver={setIsGameOver} isWin = {isWin} />
+        <Modal
+          wordToGuess={wordToGuess}
+          setIsGameOver={setIsGameOver}
+          incorrectCount={incorrectLetters.length}
+          isWin={isWin}
+        />
       )}
     </div>
   );

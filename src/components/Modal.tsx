@@ -4,13 +4,38 @@ type ModalProps = {
   wordToGuess: string;
   setIsGameOver: (prev: boolean) => void;
   isWin: boolean;
+  incorrectCount: number;
 };
 
-const Modal: React.FC<ModalProps> = ({ wordToGuess, setIsGameOver, isWin }) => {
+const Modal: React.FC<ModalProps> = ({
+  wordToGuess,
+  setIsGameOver,
+  isWin,
+  incorrectCount,
+}) => {
   const handleRestart = () => {
     setIsGameOver(false);
     window.location.reload();
   };
+
+  let incorrectCountMessage = "";
+
+  switch (true) {
+    case incorrectCount === 0:
+      incorrectCountMessage = "Ого, ви не помилилися жодного разу, так тримати⭐";
+      break;
+    case incorrectCount < 3:
+      incorrectCountMessage = "Ви добряче кмітливі";
+      break;
+
+    case incorrectCount < 5:
+      incorrectCountMessage = "Хороша робота";
+      break;
+
+    case incorrectCount === 5:
+      incorrectCountMessage = "Фуууух це було небезпечно";
+      break;
+  }
 
   return (
     <div className="modal">
@@ -18,7 +43,7 @@ const Modal: React.FC<ModalProps> = ({ wordToGuess, setIsGameOver, isWin }) => {
         {isWin ? (
           <div className="modal-message">
             <h1>Ура, ви перемогли🎉</h1>
-            <p>Ви здогадалися з 10 спроб</p>
+            <p>{incorrectCountMessage}</p>
           </div>
         ) : (
           <div className="modal-message">

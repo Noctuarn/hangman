@@ -16,7 +16,9 @@ type HangmanProps = {
 const Hangman: React.FC<HangmanProps> = ({ numberOfGuesses }) => {
   return (
     <div className="hangman">
-      {BODY_PARTS.slice(0, numberOfGuesses)}
+      {BODY_PARTS.slice(0, numberOfGuesses).map((bodyPart, index) => (
+        <React.Fragment key={index}>{bodyPart}</React.Fragment>
+      ))}
 
       <div className="hangman-rope"></div>
       <div className="hangman-outcrop"></div>
